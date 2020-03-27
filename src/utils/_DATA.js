@@ -35,7 +35,7 @@ let users = {
   paulc: {
     id: 'paulc',
     name: 'Paul Christenson',
-    avatarURL: 4,
+    avatarURL: 3,
     answers: {},
     questions: [],
   }
