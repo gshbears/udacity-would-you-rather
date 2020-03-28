@@ -2,6 +2,7 @@ import {
   RECEIVE_USERS,
   SAVE_QUESTION,
   SAVE_QUESTION_ANSWER,
+  SAVE_NEW_USER,
 } from '../actions/users';
 
 export default function user(state = {}, action) {
@@ -33,6 +34,11 @@ export default function user(state = {}, action) {
             [qid]: answer,
           },
         },
+      };
+    case SAVE_NEW_USER:
+      return {
+        ...state,
+        [action.user.id]: action.user,
       };
     default:
       return state;

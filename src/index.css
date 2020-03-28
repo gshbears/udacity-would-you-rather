@@ -2,7 +2,6 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  /*color: #252525; */
   color: #200200;
 }
 
@@ -47,6 +46,11 @@ a {
   flex-direction: column;
   margin: 20px auto 0 auto;
   box-shadow: 10px 10px 29px -7px rgba(0,0,0,0.75);
+  align-content: center;
+}
+.btnnewUser{
+  align-self: center;
+  margin-bottom: 20px;
 }
 
 .bar {
@@ -62,11 +66,46 @@ a {
   margin: 30px;
   align-self: center;
 }
-
+.newuserbar {
+  background-color:#e0e0d1;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: space-between;
+}
+.newAvatar{
+  width: 100px;
+  margin: 10px;
+}
+.newloginmenu{
+  width: 80px;
+  align-self: center;
+}
+.newUserField{
+  width: 200%;
+  align-self: center;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+#username{
+  font-size: 20px;
+  margin:8px;
+}
+.newlogincons{
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  margin: 15px;
+}
 .loginmenu{
   display: flex;
   flex-direction: row;
 
+}
+.headerNew{
+  margin-left: 70px;
+  margin-right:auto;
 }
 .menuitem{
   min-width: 200px;
