@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleInitalData } from '../actions/multiple';
 import LoadingBar from 'react-redux-loading-bar';
@@ -11,6 +11,7 @@ import Add from './Add';
 import Home from './Home';
 import PollDo from './PollDo';
 import PollView from './PollView';
+import NoMatchUrl from './NoMatchUrl';
 import Toolbar from '@material-ui/core/Toolbar';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -64,11 +65,27 @@ class App extends Component {
                   <Login />
                 ) : (
                   <div>
-                    <Route path="/" exact component={Home} />
-                    <Route path="/leaderBoard" exact component={LeaderBoard} />
-                    <Route path="/add" exact component={Add} />
-                    <Route path="/viewPoll/:id?" exact component={PollView} />
-                    <Route path="/doPoll/:id?" exact component={PollDo} />
+                    <Switch>
+                      <Route path="/" exact component={Home} />
+                      <Route
+                        path="/leaderboard"
+                        exact
+                        component={LeaderBoard}
+                      />
+                      <Route path="/add" exact component={Add} />
+                      <Route
+                        path="/viewPoll/:question_id?"
+                        exact
+                        component={PollView}
+                      />
+                      <Route
+                        path="/doPoll/:question_id?"
+                        exact
+                        component={PollDo}
+                      />
+                      <Route path="/NoMatch" exact component={NoMatchUrl} />
+                      <Route component={NoMatchUrl} />
+                    </Switch>
                   </div>
                 )}
               </div>

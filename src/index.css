@@ -38,6 +38,10 @@ a {
   padding: 10px;
   margin-bottom: 20px;
 }
+.nomatchbtn{
+  align-self: center;
+  margin: 20px;
+}
 
 .login {
   width: 400px;
@@ -296,7 +300,8 @@ a {
   flex-direction: column;
   padding: 10px;
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .authorinfo{
   width: 25%;

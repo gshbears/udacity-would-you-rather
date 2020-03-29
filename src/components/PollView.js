@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { avatars } from './../images/index';
 import Avatar from '@material-ui/core/Avatar';
@@ -55,6 +56,10 @@ class PollView extends Component {
 
   render() {
     const { users, questions, id } = this.props;
+
+    if (questions[id] === undefined) {
+      return <Redirect to="/NoMatch" />;
+    }
 
     let optOne = questions[id].optionOne.votes.length;
     let optTwo = questions[id].optionTwo.votes.length;
@@ -145,14 +150,14 @@ class PollView extends Component {
 }
 
 function mapStateToProps({ questions, users, authid }, props) {
-  const { id } = props.match.params;
+  const { question_id } = props.match.params;
 
   return {
-    id,
+    id: question_id,
     users,
     questions,
     authid,
   };
 }
 
-export default connect(mapStateToProps)(PollView);
+export default withRouter(connect(mapStateToProps)(PollView));

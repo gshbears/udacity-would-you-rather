@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { avatars } from './../images/index';
 import Avatar from '@material-ui/core/Avatar';
@@ -10,6 +11,13 @@ class PollDo extends Component {
   state = {
     optionOne: true,
   };
+  componentDidUpdate(prevProps, prevState) {
+    const { history, users, id } = this.props;
+
+    if (prevProps.users !== users) {
+      history.push('/viewPoll/' + id);
+    }
+  }
 
   getAvatarURL = (userid) => {
     const { users } = this.props;
@@ -63,12 +71,15 @@ class PollDo extends Component {
     }
 
     dispatch(handleQuestionAnswer(option, id));
-    history.push('/viewPoll/' + id);
   };
 
   render() {
     const { users, questions, id } = this.props;
     const { optionOne } = this.state;
+
+    if (questions[id] === undefined) {
+      return <Redirect to="/NoMatch" />;
+    }
 
     return (
       <div>
@@ -123,10 +134,10 @@ class PollDo extends Component {
 }
 
 function mapStateToProps({ questions, users, authid }, props) {
-  const { id } = props.match.params;
+  const { question_id } = props.match.params;
 
   return {
-    id,
+    id: question_id,
     users,
     questions,
     authid,

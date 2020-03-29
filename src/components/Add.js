@@ -8,17 +8,22 @@ class Add extends Component {
   state = {
     optionOne: '',
     optionTwo: '',
+    submitted: false,
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    const { history, users } = this.props;
+
+    if (prevProps.users !== this.props.users) {
+      history.push('/');
+    }
+  }
+
   handleAdd = () => {
-    const { dispatch } = this.props;
+    const { dispatch, history } = this.props;
     const { optionOne, optionTwo } = this.state;
 
     dispatch(handleAddQuestion(optionOne, optionTwo));
-    this.setState({
-      optionOne: '',
-      optionTwo: '',
-    });
   };
 
   handleTextChange = (e) => {

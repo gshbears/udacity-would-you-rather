@@ -21,13 +21,31 @@ class Login extends Component {
     newUser: false,
     newUserName: '',
     newAvatar: 0,
+    newId: '',
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    const { newId, newUser } = this.state;
+    const { users } = this.props;
+
+    if (prevProps !== this.props) {
+      if (newId !== '' && users[newId] !== undefined) {
+        this.setState({
+          newUserName: '',
+          newAvatar: 0,
+          newID: '',
+          id: newId,
+          newUser: false,
+        });
+      }
+    }
+  }
+
   handleLogin = (username) => {
-    const { dispatch, history } = this.props;
+    const { dispatch, history, pathname } = this.props;
 
     dispatch(setAuthedUser(this.state.id));
-    history.push('/');
+    history.push(pathname);
   };
 
   handleUserSelect = (e) => {
@@ -62,7 +80,7 @@ class Login extends Component {
 
     dispatch(handleAddNewUser(newId, newAvatar, newUserName));
     this.setState({
-      id: newId,
+      newId,
     });
   };
 
@@ -135,7 +153,7 @@ class Login extends Component {
                 >
                   <MenuItem value={''}></MenuItem>
                   {avatars.map((item, index) => (
-                    <MenuItem value={index} key={item} className="menuitem">
+                    <MenuItem value={index} key={index} className="menuitem">
                       <div className="newloginmenu">
                         <Avatar alt={String(item.image)} src={item.image} />
                       </div>

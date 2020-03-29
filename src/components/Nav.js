@@ -15,15 +15,6 @@ const StyledTabs = withStyles({
   },
 })(Tabs);
 
-const StyledTab = withStyles({
-  labelIcon: {
-    minHeight: 53,
-    '& $wrapper > *:first-child': {
-      marginBottom: 0,
-    },
-  },
-})(Tab);
-
 class Nav extends Component {
   state = {
     tabIndex: 0,
@@ -41,7 +32,7 @@ class Nav extends Component {
         history.push('/add');
         break;
       case 2:
-        history.push('/leaderBoard');
+        history.push('/leaderboard');
         break;
       default:
         history.push('/');
@@ -58,21 +49,21 @@ class Nav extends Component {
           value={this.state.tabIndex}
           aria-label="nav tabs"
         >
-          <StyledTab
+          <Tab
             icon={<Home />}
             disabled={authid === ''}
             label="Home"
             variant="fullWidth"
             onClick={this.handleTabChange(0)}
           />
-          <StyledTab
+          <Tab
             icon={<AddComment />}
             disabled={authid === ''}
             label="New Poll"
             variant="fullWidth"
             onClick={this.handleTabChange(1)}
           />
-          <StyledTab
+          <Tab
             icon={<StarsIcon />}
             disabled={authid === ''}
             label="Leader Board"
