@@ -141,15 +141,23 @@ class Home extends Component {
 }
 
 function mapStateToProps({ questions, authid, users }) {
-  const questionid = questions ? Object.keys(questions) : undefined;
+  const questionid = questions
+    ? Object.keys(questions).sort(
+        (a, b) => questions[b].timestamp - questions[a].timestamp
+      )
+    : undefined;
 
   const answered =
-    users && authid ? Object.keys(users[authid].answers) : undefined;
+    users && authid && questions
+      ? questionid.filter((key) => {
+          return users[authid].answers[key] !== undefined;
+        })
+      : undefined;
 
   const unAnswered =
     users && authid && questions
       ? questionid.filter((key) => {
-          return answered.join().indexOf(key) === -1;
+          return users[authid].answers[key] === undefined;
         })
       : undefined;
 
